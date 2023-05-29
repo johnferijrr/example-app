@@ -12,7 +12,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return PostResource::collection($posts); 
+        return response()->json($posts);
     }
 
     public function show($id)
