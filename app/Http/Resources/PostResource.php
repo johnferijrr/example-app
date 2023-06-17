@@ -14,11 +14,14 @@ class PostResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $square=4*4;
         return [
             'id' => $this->id,
-            'title' => $this->title,
-            'news_content' => $this->news_content,
-            'created_at' => date_format($this->created_at, "Y/m/d H:i:s" )
+            'barang' => $this->barang,
+            'deskripsi_barang' => $this->deskripsi_barang,
+            'whatever' => $square,
+            'created_at' => date_format($this->created_at, "Y/m/d H:i:s",
+            )
         ];
     }
 }

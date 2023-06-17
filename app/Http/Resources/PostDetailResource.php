@@ -16,11 +16,11 @@ class PostDetailResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'title' => $this->title,
-            'news_content' => $this->news_content,
+            'barang' => $this->barang,
+            'deskripsi_barang' => $this->deskripsi_barang,
             'created_at' => date_format($this->created_at, "Y/m/d H:i:s" ),
             'author' => $this->author,
-            'komentar' => $this->title
+            'writer' => $this->whenLoaded('writer')
         ];
     }
 }
