@@ -22,7 +22,7 @@
 
 <body>
 
-    <div id="map" style="width: 906.75px; height: 338.25px; left: 267.75px; top: 3150px; position: absolute; border-radius: 43px;"></div>
+    <div id="map" style="width: 906.75px; height: 338.25px; left: 267.75px; top: 3150px; position: absolute; border-radius: 22px;"></div>
     <script>
 
 	const map = L.map('map').setView([-7.775440423721329, 110.37424686589556], 13);

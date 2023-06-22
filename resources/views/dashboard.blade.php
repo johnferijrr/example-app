@@ -1,5 +1,4 @@
-@extends('layout.main')
-
+@extends('template')
 @section('content')
     {{-- Navbar --}}
     <nav class="navbar navbar-expand-lg bg-success navbar-dark">
@@ -182,7 +181,7 @@
     <p class="aw">© DEPARTEMEN TEKNIK ELEKTRO DAN INFORMATIKA SEKOLAH VOKASI UGM</p>
     <img class="ax" src="images/Lambang UGM-putih (1).png">
     <img class="az" src="images/Logo Horizontal 2.png">
-    <a href="admin/login" class="ba">Masuk</a>
+    <a href="civitas" class="ba">Masuk</a>
     <a href="#" class="bb">Daftar Akun</a>
     <p class="bn">Ruangan Lab</p>
     <p class="bo">Deskripsi Ruangan di sini</p>
@@ -199,8 +198,6 @@
       <a href="#" class="ca">Lihat Selengkapnya...</a>
       <a href="#" class="cb">Lihat Selengkapnya...</a>
       <a href="#" class="cc">Lihat Selengkapnya...</a>
-
-
 
 
 @endsection
