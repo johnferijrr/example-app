@@ -35,6 +35,10 @@ Route::get('/register', function () {
     return view('layout.register');
 });
 
+Route::get('/detail', function () {
+    return view('layout.detail');
+});
+
 Route::get('/lupapassword', function () {
     return view('layout.lupapassword');
 });

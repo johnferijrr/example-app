@@ -66,10 +66,10 @@
 
 .ay {
   position: absolute;
-  height: 4800px;
-  width: 1425px;
+  height: 4780px;
+  width: 1438px;
   left: 0px;
-  top: 50px;
+  top: 70px;
 
   background: #F6F8FD;
 }
@@ -1772,4 +1772,13 @@ p.dg {
   text-align: center;
 
   color: #0E094D;
+}
+
+.ha {
+  width: 566px;
+  height: 535px;
+  flex-shrink: 0;
+  border-radius: 10px;
+background: #FFF;
+box-shadow: 9px 12px 27px -12px rgba(0, 0, 0, 0.25);
 }

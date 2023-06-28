@@ -1,34 +1,63 @@
 @extends('template')
 @section('content')
-    {{-- Navbar --}}
-    <nav class="navbar navbar-expand-lg bg-success navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">E-Sarpras</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->segment('1') == '' || request()->segment('1') == 'home' ? 'active' : '' }}"
-                            aria-current="page" href="{{ url('home') }}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->segment('1') == 'students' ? 'active' : '' }}"
-                            href={{ url('students') }}>Features</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->segment('1') == 'home' ? 'active' : '' }}"
-                            href="#">Pricing</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->segment('1') == 'home' ? 'active' : '' }}">Disabled</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<nav class="navbar navbar-expand-lg navbar-white bg-white">
+  <div class="container">
+      <a class="navbar-brand" href="#">E-Sarpras DTEDI SV UGM</a>
+      <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="my-nav" class="collapse navbar-collapse">
+          <ul class="navbar-nav ml-auto">
+              @guest('admin')
+              <li class="nav-item">
+                <a href="#"
+                    class="nav-link">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Beranda</a>
+            </li>
+            <li class="nav-item">
+                <a href="#sarpras" class="nav-link">&emsp;&emsp;&emsp;&emsp;Sarana dan Prasarana</a>
+            </li>
+            <li class="nav-item">
+                <a href="#panduan" class="nav-link">&emsp;&emsp;Panduan Peminjaman</a>
+            </li>
+            <li class="nav-item">
+                <a href="#lokasi" class="nav-link">&emsp;&emsp;Lokasi</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('admin.login') }}" class="nav-link">&emsp;&emsp;&emsp;Login</a>
+            </li>
+                  @else
+                  @can('role',['admin','editor','operator'])
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Beranda</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#sarpras" class="nav-link">&emsp;&emsp;&emsp;&emsp;Sarana dan Prasarana</a>
+              </li>
+              <li class="nav-item">
+                <a href="#panduan" class="nav-link">&emsp;&emsp;Panduan Peminjaman</a>
+            </li>
+            <li class="nav-item">
+              <a href="#lokasi" class="nav-link">&emsp;&emsp;Lokasi</a>
+          </li>
+                  @endcan
+                  <li class="nav-item dropdown">
+                    <a href="#" class="nav-link" data-toggle="dropdown">&emsp;&emsp;{{ Auth::user()->name }}</a>
+                      <div class="dropdown-menu dropdown-menu-right">
+                          <a class="dropdown-item"
+                          href={{ url('students') }}>Dashboard</a>
+                          <a href="{{ route('admin.logout') }}"
+                          onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                          class="dropdown-item">Logout</a>
+                          <form action="{{ route('admin.logout') }}" id="logout-form" method="post">
+                              @csrf
+                          </form>
+                      </div>
+                  </li>
+              @endguest
+          </ul>
+      </div>
+  </div>
+</nav>
     {{-- End --}}
     <div class="ay"></div>
     <img class="au" src="images/image 15.png">
@@ -50,9 +79,9 @@
     <p class="h">Ruang & Lab</p>
     <p class="i">Tools & Hardware</p>
     <p class="w">Device</p>
-    <p class="j">SARANA DAN PRASARANA</p>
+    <p class="j" id="sarpras">SARANA DAN PRASARANA</p>
 
-    <p class="k">PANDUAN PEMINJAMAN</p>
+    <p class="k" id="panduan">PANDUAN PEMINJAMAN</p>
     <p class="l">PERTANYAAN YANG SERING DITANYAKAN</p>
     <div class="accordion" id="accordionExample">
         <div class="accordion-item">
@@ -147,7 +176,7 @@
           </div>
       </div>
       
-    <p class="m">LOKASI</p>
+    <p class="m" id="lokasi">LOKASI</p>
     <p class="n">Target Output E-Sarpras</p>
     <p class="o">Sebagai platform digital Sarana dan Prasarana dengan fitur monitoring realtime</p>
     <p class="p">Fasilitas peminjaman berbasis web untuk meningkatkan layanan Civitas Akademik</p>
@@ -195,9 +224,28 @@
     <img class="bw" src="images/l-1.png">
     <img class="bx" src="images/l-2.png">
     <img class="by" src="images/l-3.png">
-      <a href="#" class="ca">Lihat Selengkapnya...</a>
-      <a href="#" class="cb">Lihat Selengkapnya...</a>
-      <a href="#" class="cc">Lihat Selengkapnya...</a>
+      <div id="map"
+      style="width: 906.75px; height: 338.25px; left: 267.75px; top: 3150px; position: absolute; border-radius: 22px;">
+  </div>
+  <script>
+      const map = L.map('map').setView([-7.775440423721329, 110.37424686589556], 13);
 
+      const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 50000,
+          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      }).addTo(map);
+
+      const marker = L.marker([-7.775440423721329, 110.37424686589556]).addTo(map)
+          .bindPopup('Sekolah Vokasi UGM at here!').openPopup();
+
+      function onMapClick(e) {
+          popup
+              .setLatLng(e.latlng)
+              .setContent(`You clicked the map at ${e.latlng.toString()}`)
+              .openOn(map);
+      }
+
+      map.on('click', onMapClick);
+  </script>
 
 @endsection

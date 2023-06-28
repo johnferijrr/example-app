@@ -21,32 +21,6 @@
 </head>
 
 <body>
-
-    <div id="map" style="width: 906.75px; height: 338.25px; left: 267.75px; top: 3150px; position: absolute; border-radius: 22px;"></div>
-    <script>
-
-	const map = L.map('map').setView([-7.775440423721329, 110.37424686589556], 13);
-
-	const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-		maxZoom: 50000,
-		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-	}).addTo(map);
-
-	const marker = L.marker([-7.775440423721329, 110.37424686589556]).addTo(map)
-		.bindPopup('Sekolah Vokasi UGM at here!').openPopup();
-
-	function onMapClick(e) {
-		popup
-			.setLatLng(e.latlng)
-			.setContent(`You clicked the map at ${e.latlng.toString()}`)
-			.openOn(map);
-	}
-
-	map.on('click', onMapClick);
-
-    </script>
-
-
     {{-- content --}}
     <div class="mt-2">
         @yield('content')

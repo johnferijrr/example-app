@@ -2,36 +2,66 @@
 
 @section('content')
     {{-- Navbar --}}
-    <nav class="navbar navbar-expand-lg bg-success navbar-dark">
+    <nav class="navbar navbar-expand-lg navbar-white bg-white">
         <div class="container">
-            <a class="navbar-brand" href="#">E-Sarpras</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="#">E-Sarpras DTEDI SV UGM</a>
+            <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+            <div id="my-nav" class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    @guest('admin')
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->segment('1') == '' || request()->segment('1') == 'home' ? 'active' : '' }}"
-                            aria-current="page" href="{{ url('home') }}">Home</a>
+                      <a href="#"
+                          class="nav-link">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Beranda</a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="#sarpras" class="nav-link">&emsp;&emsp;&emsp;&emsp;Sarana dan Prasarana</a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="#panduan" class="nav-link">&emsp;&emsp;Panduan Peminjaman</a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="#lokasi" class="nav-link">&emsp;&emsp;Lokasi</a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="{{ route('admin.login') }}" class="nav-link">&emsp;&emsp;&emsp;Login</a>
+                  </li>
+                        @else
+                        @can('role',['admin','editor','operator'])
+                        <li class="nav-item">
+                          <a href="#" class="nav-link">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Beranda</a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="#sarpras" class="nav-link">&emsp;&emsp;&emsp;&emsp;Sarana dan Prasarana</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->segment('1') == 'students' ? 'active' : '' }}"
-                            href={{ url('students') }}>Features</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->segment('1') == 'home' ? 'active' : '' }}"
-                            href="#">Pricing</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->segment('1') == 'home' ? 'active' : '' }}">Disabled</a>
-                    </li>
+                      <a href="#panduan" class="nav-link">&emsp;&emsp;Panduan Peminjaman</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#lokasi" class="nav-link">&emsp;&emsp;Lokasi</a>
+                </li>
+                        @endcan
+                        <li class="nav-item dropdown">
+                          <a href="#" class="nav-link" data-toggle="dropdown"></a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item"
+                                href={{ url('students') }}>Dashboard</a>
+                                <a href="{{ route('admin.logout') }}"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                class="dropdown-item">Logout</a>
+                                <form action="{{ route('admin.logout') }}" id="logout-form" method="post">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                    @endguest
                 </ul>
             </div>
         </div>
-    </nav>
+      </nav>
     {{-- End --}}
-    <h3>Data Student</h3>
+    <h3>DataTable User</h3>
     <div class="card">
         <div class="card-header">
             <button type="button" class="btn btn-sm btn-primary" onclick="window.location='{{ url('students/add') }}'">

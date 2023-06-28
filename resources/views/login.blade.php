@@ -66,7 +66,6 @@ align-items: center;
 color: #0E094D;
 
 ;">Password</p>
-<img class="ch" src="images/Group.svg">
 <form action="" method="post">
     @csrf
     <div id="b" style="  position: absolute;
@@ -109,4 +108,51 @@ color: #0E094D;
         border-radius: 20px;  color: #FFFFFF;">Login</button>
     </div>
 </form>
+<div class="cl" style="  position: absolute;
+width: 425px;
+height: 70px;
+left: 780px;
+top: 340px;
+
+background: rgb(138, 184, 247);
+border-radius: 15px 15px 15px 15px;"></div>
+<p class="a" style="  position: absolute;
+width: 276px;
+height: 46px;
+left: 995px;
+top: 239px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 48px;
+line-height: 58px;
+
+color: white;">Platform</p>
+<p class="b" style="  position: absolute;
+width: 357px;
+height: 46px;
+left: 945px;
+top: 280px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 48px;
+line-height: 58px;
+
+color: white;">Digitalisasi</p>
+<p class="c" style="  position: absolute;
+width: 553px;
+height: 61.8px;
+left: 800px;
+top: 343px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 800;
+font-size: 48px;
+line-height: 58px;
+
+color: #0E094D;">E-Sarpras Vokasi</p>
 @endsection
