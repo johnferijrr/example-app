@@ -1,68 +1,82 @@
 @extends('layout.main')
 
 @section('content')
-    {{-- Navbar --}}
-    <nav class="navbar navbar-expand-lg navbar-white bg-white">
-        <div class="container">
-            <a class="navbar-brand" href="#">E-Sarpras DTEDI SV UGM</a>
-            <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div id="my-nav" class="collapse navbar-collapse">
-                <ul class="navbar-nav ml-auto">
-                    @guest('admin')
+
+<nav class="navbar navbar-expand-lg navbar-white bg-white">
+    <div class="container">
+        <a class="navbar-brand" href="admin">E-Sarpras DTEDI SV UGM</a>
+        <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="my-nav" class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                @guest('admin')
+                <li class="nav-item">
+                  <a href="#"
+                      class="nav-link">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Beranda</a>
+              </li>
+              <li class="nav-item">
+                  <a href="#sarpras" class="nav-link">&emsp;&emsp;&emsp;&emsp;Sarana dan Prasarana</a>
+              </li>
+              <li class="nav-item">
+                  <a href="#panduan" class="nav-link">&emsp;&emsp;Panduan Peminjaman</a>
+              </li>
+              <li class="nav-item">
+                  <a href="#lokasi" class="nav-link">&emsp;&emsp;Lokasi</a>
+              </li>
+              <li class="nav-item">
+                  <a href="{{ route('admin.login') }}" class="nav-link">&emsp;&emsp;&emsp;Login</a>
+              </li>
+                    @else
+                    @can('role',['admin'])
                     <li class="nav-item">
-                      <a href="#"
-                          class="nav-link">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Beranda</a>
+                      <a href="#" class="nav-link">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Beranda</a>
                   </li>
                   <li class="nav-item">
-                      <a href="#sarpras" class="nav-link">&emsp;&emsp;&emsp;&emsp;Sarana dan Prasarana</a>
-                  </li>
-                  <li class="nav-item">
-                      <a href="#panduan" class="nav-link">&emsp;&emsp;Panduan Peminjaman</a>
-                  </li>
-                  <li class="nav-item">
-                      <a href="#lokasi" class="nav-link">&emsp;&emsp;Lokasi</a>
-                  </li>
-                  <li class="nav-item">
-                      <a href="{{ route('admin.login') }}" class="nav-link">&emsp;&emsp;&emsp;Login</a>
-                  </li>
-                        @else
-                        @can('role',['admin','editor','operator'])
-                        <li class="nav-item">
-                          <a href="#" class="nav-link">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Beranda</a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="#sarpras" class="nav-link">&emsp;&emsp;&emsp;&emsp;Sarana dan Prasarana</a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="#panduan" class="nav-link">&emsp;&emsp;Panduan Peminjaman</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#lokasi" class="nav-link">&emsp;&emsp;Lokasi</a>
+                    <a href="#sarpras" class="nav-link">&emsp;&emsp;&emsp;&emsp;Sarana dan Prasarana</a>
                 </li>
-                        @endcan
-                        <li class="nav-item dropdown">
-                          <a href="#" class="nav-link" data-toggle="dropdown"></a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item"
-                                href={{ url('students') }}>Dashboard</a>
-                                <a href="{{ route('admin.logout') }}"
-                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                                class="dropdown-item">Logout</a>
-                                <form action="{{ route('admin.logout') }}" id="logout-form" method="post">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
-                    @endguest
-                </ul>
-            </div>
+                <li class="nav-item">
+                  <a href="#panduan" class="nav-link">&emsp;&emsp;Panduan Peminjaman</a>
+              </li>
+              <li class="nav-item">
+                <a href="#lokasi" class="nav-link">&emsp;&emsp;Lokasi</a>
+            </li>
+                    @endcan
+                    <li class="nav-item dropdown">
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item"
+                            href={{ url('students') }}>Dashboard</a>
+                            <a href="{{ route('admin.logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                            class="dropdown-item">Logout</a>
+                            <form action="{{ route('admin.logout') }}" id="logout-form" method="post">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                @endguest
+            </ul>
         </div>
-      </nav>
+    </div>
+  </nav>
+    {{-- Navbar --}}
+    <div class="ay"></div>
     {{-- End --}}
+    <p class="c" style="  position: absolute;
+width: 553px;
+height: 61.8px;
+left: 200px;
+top: 60px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 800;
+font-size: 30px;
+line-height: 58px;
+
+color: #0E094D;">Data Mahasiswa</p>
     <h3>DataTable User</h3>
-    <div class="card">
+    <div class="card" style=" width:1100px; left:200px">
         <div class="card-header">
             <button type="button" class="btn btn-sm btn-primary" onclick="window.location='{{ url('students/add') }}'">
                 <i class="fas fa-plus-circle"></i> Add New Data
